@@ -1,1 +1,1 @@
-# Cocktail-recipe-finder
+# Cocktaily
