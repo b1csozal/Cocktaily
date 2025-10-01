@@ -1,5 +1,6 @@
 using Cocktaily.Database;
 using Cocktaily.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyApp.Backend.Database;
 
@@ -16,6 +17,7 @@ public class RecipeController : ControllerBase
         _context = context;
     }
 
+    // ------------------------------ CATEGORIES ------------------------------
     [HttpGet("categories")]
     public async Task<IActionResult> GetAllCategories()
     {
@@ -25,4 +27,16 @@ public class RecipeController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet("category")]
+    [Authorize]
+    public async Task<IActionResult> AddCategory()
+    {
+        List<CategoryEntity> categories = _context.Categories.ToList();
+
+        var result = categories.Select(x => new CategoryModel(x)).ToList();
+
+        return Ok("Niice");
+    }
 }
+

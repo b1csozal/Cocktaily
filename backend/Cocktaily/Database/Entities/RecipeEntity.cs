@@ -20,6 +20,10 @@ public class RecipeEntity
 
     public bool IsValidated { get; set; }
 
+    public float Rating { get; set; }
+
+    public int NumberOfRatings { get; set; }
+
     public uint GlassId { get; set; }
     public virtual GlassEntity Glass { get; set; }
 

@@ -10,6 +10,8 @@ public class RecipeModel
     public string Author { get; set; }
     public string Steps { get; set; }
     public bool IsValidated { get; set; }
+    public float Rating { get; set; }
+    public int NumberOfRating { get; set; }
     public uint GlassId { get; set; }
 
     public RecipeModel()
@@ -26,6 +28,8 @@ public class RecipeModel
         Steps = entity.Steps;
         IsValidated = entity.IsValidated;
         GlassId = entity.GlassId;
+        Rating = entity.Rating;
+        NumberOfRating = entity.NumberOfRatings;
     }
 
     public RecipeEntity ToEntity()
@@ -39,6 +43,8 @@ public class RecipeModel
         entity.Steps = Steps;
         entity.IsValidated = IsValidated;
         entity.GlassId = GlassId;
+        entity.Rating = Rating;
+        entity.NumberOfRatings = NumberOfRating;
 
         return entity;
     }

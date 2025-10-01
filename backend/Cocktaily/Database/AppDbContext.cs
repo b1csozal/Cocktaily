@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Reflection.Emit;
+using Cocktaily.Database.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Backend.Database;
 
 namespace Cocktaily.Database;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
