@@ -1,0 +1,6 @@
+@Cocktaily_HostAddress = http://localhost:5148
+
+GET {{Cocktaily_HostAddress}}/cocktaily/
+Accept: application/json
+
+###
