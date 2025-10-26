@@ -9,10 +9,10 @@ using Microsoft.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddBackend(builder.Configuration);
 
 builder.Services.AddControllers();
 
-builder.Services.AddBackend(builder.Configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -20,6 +20,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Cocktaily.Database.AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -30,10 +33,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();

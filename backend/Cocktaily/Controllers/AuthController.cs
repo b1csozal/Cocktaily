@@ -1,6 +1,7 @@
 ﻿using Cocktaily.Database;
 using Cocktaily.Database.Entities;
 using Cocktaily.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -27,7 +28,7 @@ public class AuthController : ControllerBase
         _jwtIssuer = config["Jwt:Issuer"] ?? throw new ArgumentNullException("Jwt:Issuer not configured");
     }
 
-    [HttpPost("Login")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] UserModel userModel)
     {
         if (string.IsNullOrEmpty(userModel.UserName) || string.IsNullOrEmpty(userModel.Password))
@@ -51,6 +52,13 @@ public class AuthController : ControllerBase
         var accessToken = GenerateJwtToken(claims, TimeSpan.FromHours(24));
 
         return Ok(new { accessToken = accessToken });
+    }
+
+    [HttpGet("auth")]
+    [Authorize]
+    public async Task<IActionResult> CheckAuthorization()
+    {
+        return Ok();
     }
 
     private string GenerateJwtToken(Claim[] claims, TimeSpan expiresIn)

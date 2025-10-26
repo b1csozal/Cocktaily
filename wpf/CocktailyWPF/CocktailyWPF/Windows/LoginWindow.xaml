@@ -1,0 +1,15 @@
+﻿<Window x:Class="CocktailyWPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Login" Height="200" Width="230">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Height="20" Margin="0,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180">Felhasználónév</TextBlock>
+        <TextBox x:Name="inputUsername" HorizontalAlignment="Center" Height="20" Margin="0,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <TextBlock HorizontalAlignment="Center" Height="20" Margin="0,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180">Jelszó</TextBlock>
+        <TextBox x:Name="inputPassword" HorizontalAlignment="Center" Height="20" Margin="0,79,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+        <Button Content="Bejelentkezés" HorizontalAlignment="Center" Height="20" Margin="0,114,0,0" VerticalAlignment="Top" Width="180" Click="HandleLogin"/>
+    </Grid>
+</Window>

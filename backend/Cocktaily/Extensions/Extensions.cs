@@ -12,9 +12,10 @@ public static class Extensions
 {
     public static void AddBackend(this IServiceCollection services, IConfiguration config)
     {
-        services.ConfigureJWTAuth(config)
+        services
                 .ConfigureIdentity()
-                .ConfigureDbContext(config);
+                .ConfigureDbContext(config)
+                .ConfigureJWTAuth(config);
     }
 
     private static IServiceCollection ConfigureDbContext(this IServiceCollection services, IConfiguration configuration)
