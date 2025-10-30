@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   Text,
@@ -8,23 +8,47 @@ import {
   Dimensions,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Keyboard
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Svg, Path } from "react-native-svg";
+import React from "react";
+import apiClient from "../../services/apiClient";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const TabsAdd = () => {
+  const [isGlassesDropdownOpen, setIsGlassesDropdownOpen] = useState(false);
+
   const [image, setImage] = useState<string | null>(null);
   const [cocktailName, setCocktailName] = useState<string>("Koktél");
+
+  const [glasses, setGlasses] = useState([]);
+
+  useEffect(() => {
+    // Fetch glass types from the API
+    const fetchGlasses = async () => {
+      try {
+        apiClient.get("/all-glasses").then((response) => {
+          alert(JSON.stringify(response.data));
+          setGlasses(response.data);
+        });
+      } catch (error) {
+        alert("Error fetching glasses: " + error);
+        console.error("Error fetching glasses:", error);
+      }
+    };
+
+    fetchGlasses();
+  }, []);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ["images"],
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
 
@@ -37,6 +61,7 @@ const TabsAdd = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={Keyboard.dismiss} activeOpacity={1} />
       {image ? (
         <>
           <Image source={{ uri: image }} style={styles.image} />
@@ -70,6 +95,8 @@ const TabsAdd = () => {
       )}
 
       <TextInput style={styles.title} placeholder="Koktél neve" value={cocktailName} onChangeText={setCocktailName} />
+    
+      
     </SafeAreaView>
   );
 };
@@ -109,7 +136,6 @@ const styles = StyleSheet.create({
     right: 20,
     color: "#e20e0eff",
   },
-
   title: {
     fontSize: 42,
     fontWeight: "bold",
