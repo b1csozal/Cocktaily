@@ -7,6 +7,7 @@ public class GlassModel
     public uint Id { get; set; }
     public string Name { get; set; }
     public string Capacity { get; set; }
+    public string ImagePath { get; set; }
 
     public GlassModel()
     {
@@ -18,6 +19,7 @@ public class GlassModel
         Id = entity.Id;
         Name = entity.Name;
         Capacity = entity.Capacity;
+        ImagePath = entity.ImagePath;
     }
 
     public GlassEntity ToEntity()
@@ -26,6 +28,7 @@ public class GlassModel
 
         entity.Name = Name;
         entity.Capacity = Capacity;
+        entity.ImagePath = ImagePath;
 
         return entity;
     }

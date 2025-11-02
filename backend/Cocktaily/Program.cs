@@ -1,9 +1,9 @@
 using Cocktaily.Database;
 using Cocktaily.Database.Entities;
 using Cocktaily.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +32,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+
+
+
+
+
+
 
 app.UseRouting();
 app.UseHttpsRedirection();

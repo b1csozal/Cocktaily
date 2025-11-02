@@ -38,5 +38,9 @@ public class AppDbContext : IdentityDbContext<AppUser>
             new IngredientBaseEntity { Id = 7, Name = "Triple Sec", CategoryId = 1 },
             new IngredientBaseEntity { Id = 8, Name = "Blue curacao", CategoryId = 1 }
         );
+
+        modelBuilder.Entity<GlassEntity>().HasData(
+            new GlassEntity { Id = 1, Name = "Hurrikán pohár", Capacity = "450ml", ImagePath = "/glasses/hurricane.png" }
+            );
     }
 }

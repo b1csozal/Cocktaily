@@ -13,4 +13,6 @@ public class GlassEntity
     public string Name { get; set; }
 
     public string Capacity { get; set; }
+
+    public string ImagePath { get; set; }
 }
